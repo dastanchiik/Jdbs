@@ -4,6 +4,9 @@ public class Example {
     private String name;
     private int age;
 
+    public Example(){
+
+    }
     public Example(int id, String name, int age) {
         this.id = id;
         this.name = name;

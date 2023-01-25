@@ -14,9 +14,6 @@ public class App
         Example example2 = new Example(1,"fghjkl",12);
 
         Know know = new Know();
-        know.save(example);
-        know.save(example1);
-        know.save(example2);
-
+        know.findAll().forEach(System.out::println);
     }
 }

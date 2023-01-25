@@ -2,10 +2,9 @@ package org.example.Nothing;
 
 import org.example.Example;
 import org.example.dao.Db;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
+import java.util.ArrayList;
 
 public class Know implements PersonRepository{
     private final Connection connection;
@@ -37,7 +36,22 @@ public class Know implements PersonRepository{
         ps.execute();
         ps.close();
         System.out.println("saved");
-
     }
+
+    @Override
+    public ArrayList<Example> findAll() throws SQLException {
+    ArrayList<Example>list = new ArrayList<>();
+    Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select * from person ;");
+        while (resultSet.next()){
+            Example example = new Example();
+            example.setId(resultSet.getInt("id"));
+            example.setName(resultSet.getString("name"));
+            example.setAge(resultSet.getInt("age"));
+            list.add(example);
+        }
+        return list;
+    }
+
 
 }
