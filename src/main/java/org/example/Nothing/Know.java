@@ -53,5 +53,12 @@ public class Know implements PersonRepository{
         return list;
     }
 
+    @Override
+    public void deleteAll() throws SQLException {
+    Statement st = connection.createStatement();
+    st.executeUpdate( "truncate table person" );
+        System.out.println("deleted");
+    }
+
 
 }
